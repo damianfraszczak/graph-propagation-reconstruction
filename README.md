@@ -1,24 +1,11 @@
-# Reconstructing graph diffusion history from a single snapshot \(KDD 2023\)
+# Leveraging Structural Information to Reconstruct Hidden Nodes in Propagation Graphs
 
-[![Our KDD paper](https://img.shields.io/badge/2023-KDD-blue)]([https://openreview.net/forum?id=9u05zr0nhx](https://doi.org/10.1145/3580305.3599488)) [![Our paper on arXiv](https://img.shields.io/badge/2306.00488-arXiv-B31B1B.svg)](https://arxiv.org/abs/2306.00488)
-
-```bibtex
-@inproceedings{qiu2023ditto,
-  title={Reconstructing graph diffusion history from a single snapshot},
-  author={Ruizhong Qiu and Dingsu Wang and Lei Ying and {H. Vincent} Poor and Yifang Zhang and Hanghang Tong},
-  booktitle={Proceedings of the 29th {ACM} {SIGKDD} Conference on Knowledge Discovery and Data Mining},
-  year={2023}
-}
-```
-
-![Illustration](https://github.com/q-rz/KDD23-DITTO/raw/main/dash-illus.svg)
+This repository is based on the [DITTO](https://github.com/q-rz/KDD23-DITTO) method repository and has been extended with additional methods developed as part of the accompanying article. It includes Docker configurations and execution scripts, allowing the solutions to be easily deployed and run in any environment, including setups with CUDA support.
 
 ## Dependencies
 
-Our code was tested under the following dependencies:
-
-- CUDA 11.4
-- `torch==1.7.0`
+- CUDA 11.x
+- `torch==1.7.1`
 - `class-resolver==0.3.10`
 - `torch-scatter==2.0.7`
 - `torch-sparse==0.6.9`
@@ -29,8 +16,17 @@ Our code was tested under the following dependencies:
 
 ## Usage
 
-To reproduce our results:
+To reproduce the results, please run the docker-compose by running `docker-compose up`. By default it will run all scripts with CUDA support.
 
+## Structure
+In scripts directory you will find code responsible for running different experiments.
+- DITTO - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- DHREC - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- cri - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- gcn - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- gin - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- shni - the method proposed by this paper
+- sbrp - paper did not publish their source code, so th has been implemented according to their paper
 ```sh
 cd scripts
 ./{method}-{dataset}.sh {device}
@@ -43,9 +39,3 @@ cd scripts
 - `{dataset}`: `ba-si` / `er-si` / `oregon2-si` / `prost-si` / `farmers-si` (BrFarmers) / `pol-si` / `ba-sir` / `er-sir` / `oregon2-sir` / `prost-sir` / `covid-sir` / `heb-sir` (Hebrew).
   - **Notice:** As is explained in Section 5.4, {`gcn`, `gin`} were evaluated only on {`farmers-si`, `pol-si`, `covid-sir`, `heb-sir`}.
 - `{device}`: the device for PyTorch.
-
-## Other baselines
-
-- BRITS \(Cao et al., 2018\): [paper](https://proceedings.neurips.cc/paper/2018/file/734e6bfcd358e25ac1db0a4241b95651-Paper.pdf), [code](https://github.com/caow13/BRITS)
-- GRIN \(Cini et al., 2022\): [paper](https://openreview.net/pdf?id=kOu3-S3wJ7), [code](https://github.com/Graph-Machine-Learning-Group/grin)
-- SPIN \(Marisca et al., 2022\): [paper](https://arxiv.org/pdf/2205.13479.pdf), [code](https://github.com/Graph-Machine-Learning-Group/spin)
