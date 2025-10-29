@@ -22,20 +22,9 @@ To reproduce the results, please run the docker-compose by running `docker-compo
 In scripts directory you will find code responsible for running different experiments.
 - DITTO - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
 - DHREC - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
-- cri - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
-- gcn - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
-- gin - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
-- shni - the method proposed by this paper
-- sbrp - paper did not publish their source code, so th has been implemented according to their paper
-```sh
-cd scripts
-./{method}-{dataset}.sh {device}
+- CRI - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- GCN - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- GIN - implementation from [DITTO](https://github.com/q-rz/KDD23-DITTO)
+- SHNI - the method proposed by this paper
+- SbRP - paper did not publish their source code, so th has been implemented according to their paper
 ```
-
-- `{method}`: `ditto` (ours) / `dhrec` / `cri` / `gcn` / `gin`.
-  - The original code for DHREC is specially for SEIRS, so we provide our implementation of DHREC-PCDSVC for SI & SIR here.
-  - The CRI paper did not publish their source code, so we implemented CRI according to their paper.
-  - The implementations of GCN and GIN are from PyTorch Geometric.
-- `{dataset}`: `ba-si` / `er-si` / `oregon2-si` / `prost-si` / `farmers-si` (BrFarmers) / `pol-si` / `ba-sir` / `er-sir` / `oregon2-sir` / `prost-sir` / `covid-sir` / `heb-sir` (Hebrew).
-  - **Notice:** As is explained in Section 5.4, {`gcn`, `gin`} were evaluated only on {`farmers-si`, `pol-si`, `covid-sir`, `heb-sir`}.
-- `{device}`: the device for PyTorch.
